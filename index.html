@@ -60,17 +60,18 @@
         If you're using Chrome, and you want to add these anonymous playlists to your own YouTube playlists, you'll need an extension like 
         <a href="https://chromewebstore.google.com/detail/multiselect-for-youtube/gpgbiinpmelaihndlegbgfkmnpofgfei?hl=en" target="_blank">
           Multiselect for YouTube
-        </a>.
+        </a>
         which will allow you to select all the videos in the playlist and add them to your own playlist if you're logged in to a YouTube account. Similar extensions likely exist for Firefox and other browsers. I'll leave this part with you to figure out.
       </p>
     </div>
 
-    <div id="dropZone" class="drop-zone">Drag & drop a .html or .txt file here</div>
-
+    
     <div class="mb-3">
-      <label for="htmlInput" class="form-label">Or paste HTML or text below:</label>
+      <label for="htmlInput" class="form-label">Paste HTML or text below:</label>
       <textarea id="htmlInput" class="form-control" rows="8" placeholder="Paste your HTML or text here..."></textarea>
     </div>
+
+    <div id="dropZone" class="drop-zone">Or drag & drop a .html or .txt file here</div>
 
     <button class="btn btn-primary mb-3" onclick="generatePlaylists()">Generate Playlist Link(s)</button>
 
