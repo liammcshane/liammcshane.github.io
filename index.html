@@ -75,14 +75,6 @@
 
     <button class="btn btn-primary mb-3" onclick="generatePlaylists()">Generate Playlist Link(s)</button>
 
-    <!-- Export Mode Toggle -->
-    <div class="form-check form-switch form-switch-label">
-      <input class="form-check-input" type="checkbox" id="exportModeToggle">
-      <label class="form-check-label" for="exportModeToggle">
-        Export Mode: <strong id="exportModeLabel">All Video Links</strong>
-      </label>
-    </div>
-
     <div id="results" class="mt-4 playlist"></div>
   </div>
 
@@ -124,6 +116,7 @@
       }
       return chunks;
     }
+    
 
     function generatePlaylists() {
       const input = document.getElementById("htmlInput").value;
@@ -172,7 +165,29 @@
       exportDiv.appendChild(exportTxtBtn);
       exportDiv.appendChild(exportCsvBtn);
       resultsDiv.appendChild(exportDiv);
+
+      const modeToggleDiv = document.createElement("div");
+      modeToggleDiv.className = "form-check form-switch form-switch-label";
+
+      const modeInput = document.createElement("input");
+      modeInput.className = "form-check-input";
+      modeInput.type = "checkbox";
+      modeInput.id = "exportModeToggle";
+
+      const modeLabel = document.createElement("label");
+      modeLabel.className = "form-check-label";
+      modeLabel.htmlFor = "exportModeToggle";
+      modeLabel.innerHTML = `Export Mode: <strong id="exportModeLabel">All Video Links</strong>`;
+
+      modeInput.addEventListener('change', () => {
+        document.getElementById("exportModeLabel").textContent = exportMode() === 'videos' ? 'All Video Links' : 'Playlist Links';
+      });
+
+      modeToggleDiv.appendChild(modeInput);
+      modeToggleDiv.appendChild(modeLabel);
+      resultsDiv.appendChild(modeToggleDiv);
     }
+
 
     function exportData(type) {
       const mode = exportMode();
@@ -180,8 +195,8 @@
       const delimiter = type === 'csv' ? ',' : '\n';
       const text = content.join(delimiter);
       const filename = mode === 'videos'
-        ? `youtube_links.${type}`
-        : `youtube_playlists.${type}`;
+      ? `youtube_links.${type}`
+      : `youtube_playlists.${type}`;
       downloadText(text, filename);
     }
 
