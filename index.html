@@ -23,15 +23,42 @@
 <body>
 
   <div class="container">
-    <h1 class="mb-4">YouTube Playlist Generator</h1>
+    <h1 class="mb-3">🎥 YouTube Playlist Generator</h1>
 
+    <!-- Instruction Box -->
+    <div class="alert alert-info">
+      <h5 class="alert-heading">Instructions</h5>
+      <p><strong>Step 1.</strong> Get the HTML or text that contains the links you want to add to a playlist. On Chrome browser this should look something like:</p>
+      <ul>
+        <li>Right click → <strong>View Page Source</strong></li>
+        <li>Select All (<kbd>Ctrl</kbd>+<kbd>A</kbd>)</li>
+        <li>Copy (<kbd>Ctrl</kbd>+<kbd>C</kbd>)</li>
+        <li>Paste into the textbox below (<kbd>Ctrl</kbd>+<kbd>V</kbd>)</li>
+      </ul>
+      <p><strong>Step 2.</strong> Click <strong>'Generate Playlist Link(s)'</strong>.</p>
+      <p>
+        Links to YouTube playlists of videos found in the text will be generated.
+        YouTube allows for a maximum of 50 videos per playlist, so this will generate multiple playlists whenever more than 50 videos are found.
+      </p>
+      <p><strong>Step 3. (optional)</strong>  
+        If you're using Chrome, and you want to add these anonymous playlists to your own YouTube playlists, you'll need an extension like 
+        <a href="https://chromewebstore.google.com/detail/multiselect-for-youtube/gpgbiinpmelaihndlegbgfkmnpofgfei?hl=en" target="_blank">
+          Multiselect for YouTube
+        </a>. This lets you select all videos and save them to your own playlist (if you're logged into YouTube).
+        Similar extensions likely exist for Firefox and other browsers—feel free to explore!
+      </p>
+    </div>
+
+    <!-- Text Input -->
     <div class="mb-3">
-      <label for="htmlInput" class="form-label">Paste any HTML or text containing YouTube links:</label>
+      <label for="htmlInput" class="form-label">Paste HTML or text below:</label>
       <textarea id="htmlInput" class="form-control" rows="8" placeholder="Paste your HTML or text here..."></textarea>
     </div>
 
-    <button class="btn btn-primary" onclick="generatePlaylists()">Generate Playlist Links</button>
+    <!-- Generate Button -->
+    <button class="btn btn-primary" onclick="generatePlaylists()">Generate Playlist Link(s)</button>
 
+    <!-- Output Results -->
     <div id="results" class="mt-4 playlist"></div>
   </div>
 
@@ -74,7 +101,7 @@
       resultsDiv.innerHTML = "";
 
       if (chunks.length === 0) {
-        resultsDiv.innerHTML = `<div class="alert alert-warning">No valid YouTube links found.</div>`;
+        resultsDiv.innerHTML = `<div class="alert alert-warning mt-3">No valid YouTube links found.</div>`;
         return;
       }
 
@@ -95,7 +122,7 @@
     }
   </script>
 
-  <!-- Bootstrap 5 JS (optional for interactivity) -->
+  <!-- Bootstrap 5 JS (Optional) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
